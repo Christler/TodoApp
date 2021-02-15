@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <h1>To-Do</h1>
+
+    <p id="counter"></p>
+
+    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+        <input type="text" id="add-name" placeholder="New to-do">
+        <input type="submit" value="Add">
+    </form>
+
+    <table>
+        <tr>
+            <th>Done?</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tbody id="todos"></tbody>
+    </table>
+
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script>
+</body>
+</html>
