@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <title>To-Do List</title>
     <link rel="stylesheet" href="css/site.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
     <h1>To-Do</h1>
 
-    <p id="counter"></p>
-
-    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-        <input type="text" id="add-name" placeholder="New to-do">
-        <input type="submit" value="Add">
-    </form>
-
     <div class="tableContainer">
+
+        <div id="counter"></div>
+
+
+        <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+            <div id="addItemContainer" class="input-group mb-3">
+                <input type="text" class="form-control" id="add-name" placeholder="New to-do">
+                <input class="btn btn-primary" type="submit" value="Add">
+            </div>
+        </form>
+
         <table>
             <tr>
-                <th>Done?</th>
-                <th>Name</th>
-                <th></th>
-                <th></th>
             </tr>
             <tbody id="todos"></tbody>
         </table>
+
     </div>
 
     <script src="js/site.js" asp-append-version="true"></script>

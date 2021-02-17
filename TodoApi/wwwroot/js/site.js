@@ -94,7 +94,7 @@ function saveEdit(itemId) {
 function _displayCount(itemCount) {
     const name = (itemCount === 1) ? 'to-do' : 'to-dos';
 
-    document.getElementById('counter').innerText = `${itemCount} ${name}`;
+    document.getElementById('counter').innerHTML = `${itemCount} ${name}`;
 }
 
 function _displayItems(data) {
@@ -111,19 +111,23 @@ function _displayItems(data) {
         isCompleteCheckbox.checked = item.isComplete;
         isCompleteCheckbox.setAttribute('onclick', `updateItem(${item.id})`);
         isCompleteCheckbox.setAttribute("id", `checkBox${item.id}`);
+        isCompleteCheckbox.setAttribute("class", "form-check-input");
 
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
         editButton.setAttribute('id', `editButton${item.id}`);
         editButton.setAttribute('onclick', `editName(${item.id})`);
+        editButton.setAttribute("class", "btn btn-secondary")
 
         let saveButton = document.createElement('button');
         saveButton.innerText = "Save";
         saveButton.setAttribute('id', `saveButton${item.id}`);
+        saveButton.setAttribute("class", "btn btn-primary");
         saveButton.style.display = "none";
 
         let deleteButton = button.cloneNode(false);
-        deleteButton.innerText = 'Delete';
+        deleteButton.innerText = 'X';
+        deleteButton.setAttribute("class", "btn btn-danger")
         deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
 
         let tr = tBody.insertRow();
@@ -134,6 +138,7 @@ function _displayItems(data) {
         let td2 = tr.insertCell(1);
         let textNode = document.createElement('span');
         textNode.textContent = item.name;
+        textNode.setAttribute("class", "todoName");
         textNode.setAttribute("id", `name${item.id}`);
         let textBox = document.createElement('input');
         textBox.type = 'text';

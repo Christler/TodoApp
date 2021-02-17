@@ -6,13 +6,31 @@ h1 {
     text-align: center;
 }
 
+#addItemContainer {
+    margin: auto;
+    width: 50%;
+}
+
+.todoName{
+    display: block;
+    width: 380px;
+}
+
+#counter{
+    text-align: center;
+}
+
+.tableContainer {
+    width: 580px;
+    border-radius: 10px;
+    background: lightgray;
+    margin: auto;
+}
+
 table {
     font-family: Arial, sans-serif;
-    border: 1px solid;
     border-collapse: collapse;
-    width: 50%;
-    margin: auto;
-    outline: 1px solid red;
+    width: 100%;
 }
 
 th {
