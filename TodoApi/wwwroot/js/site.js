@@ -61,36 +61,6 @@ function updateItem(itemId) {
     return false;
 }
 
-function editName(itemId) {
-    let textNode = document.getElementById(`name${itemId}`);
-    let textBox = document.getElementById(`textBox${itemId}`);
-    let editButton = document.getElementById(`editButton${itemId}`);
-    let saveButton = document.getElementById(`saveButton${itemId}`);
-
-    textNode.style.display = "none";
-    editButton.style.display = "none";
-    saveButton.style.display = "block";
-    textBox.style.display = "block";
-
-    saveButton.setAttribute("onclick", `saveEdit(${itemId})`);
-}
-
-function saveEdit(itemId) {
-    let textNode = document.getElementById(`name${itemId}`);
-    let textBox = document.getElementById(`textBox${itemId}`);
-    let editButton = document.getElementById(`editButton${itemId}`);
-    let saveButton = document.getElementById(`saveButton${itemId}`);
-
-    textNode.textContent = textBox.value;
-    textBox.style.display = "none";
-    textNode.style.display = "block";
-
-    saveButton.style.display = "none";
-    editButton.style.display = "block";
-
-    updateItem(itemId);
-}
-
 function _displayCount(itemCount) {
     const name = (itemCount === 1) ? 'to-do' : 'to-dos';
 
@@ -98,8 +68,8 @@ function _displayCount(itemCount) {
 }
 
 function _displayItems(data) {
-    const tBody = document.getElementById('todos');
-    tBody.innerHTML = '';
+    const todosBody = document.getElementById("todos");
+    todosBody.innerHTML = '';
 
     _displayCount(data.length);
 
@@ -111,48 +81,34 @@ function _displayItems(data) {
         isCompleteCheckbox.checked = item.isComplete;
         isCompleteCheckbox.setAttribute('onclick', `updateItem(${item.id})`);
         isCompleteCheckbox.setAttribute("id", `checkBox${item.id}`);
-        isCompleteCheckbox.setAttribute("class", "form-check-input");
-
-        let editButton = button.cloneNode(false);
-        editButton.innerText = 'Edit';
-        editButton.setAttribute('id', `editButton${item.id}`);
-        editButton.setAttribute('onclick', `editName(${item.id})`);
-        editButton.setAttribute("class", "btn btn-secondary")
-
-        let saveButton = document.createElement('button');
-        saveButton.innerText = "Save";
-        saveButton.setAttribute('id', `saveButton${item.id}`);
-        saveButton.setAttribute("class", "btn btn-primary");
-        saveButton.style.display = "none";
 
         let deleteButton = button.cloneNode(false);
         deleteButton.innerText = 'X';
-        deleteButton.setAttribute("class", "btn btn-danger")
+        deleteButton.setAttribute('class', 'deleteButton');
         deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
 
-        let tr = tBody.insertRow();
+        let todoName = document.createElement("div");
+        todoName.setAttribute("class", "todoName");
+        todoName.setAttribute("id", `name${item.id}`);
+        todoName.innerHTML = item.name;
 
-        let td1 = tr.insertCell(0);
-        td1.appendChild(isCompleteCheckbox);
+        let todoContainer = document.createElement("div");
+        todoContainer.setAttribute("class", "todo");
 
-        let td2 = tr.insertCell(1);
-        let textNode = document.createElement('span');
-        textNode.textContent = item.name;
-        textNode.setAttribute("class", "todoName");
-        textNode.setAttribute("id", `name${item.id}`);
-        let textBox = document.createElement('input');
-        textBox.type = 'text';
-        textBox.setAttribute("id", `textBox${item.id}`);
-        textBox.style.display = "none";
-        td2.appendChild(textNode);
-        td2.appendChild(textBox);
+        let checkmark = document.createElement("span");
+        checkmark.setAttribute("class", "checkmark");
 
-        let td3 = tr.insertCell(2);
-        td3.appendChild(editButton);
-        td3.appendChild(saveButton);
+        let label = document.createElement("label");
+        label.setAttribute("class", "checkbox");
+        label.appendChild(todoName);
+        label.appendChild(isCompleteCheckbox);
+        label.appendChild(checkmark);
 
-        let td4 = tr.insertCell(3);
-        td4.appendChild(deleteButton);
+        todoContainer.appendChild(label);
+        todoContainer.appendChild(deleteButton);
+
+        todosBody.appendChild(todoContainer);
+
     });
 
     todos = data;
