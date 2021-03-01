@@ -1,2 +1,2 @@
-# TodoApp
-Todo App built with ASP.Net Core
+# TodoAPI
+Todo API built with ASP.Net Core
